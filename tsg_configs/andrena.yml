@@ -1,19 +1,24 @@
-caption_model: tsgm3
-id: tsgmt1
 checkpoint_path: /data/scratch/eey362/tsgmt1
-gpu: 0
-# start_from: 4
-
-noamopt: true
-noamopt_warmup: 20000
-label_smoothing: 0.0
 input_json: /data/EECS-YuanLab/COCO/cocotalk.json
 input_label_h5: /data/EECS-YuanLab/COCO/cocotalk_label.h5
 input_att_dir: /data/EECS-YuanLab/COCO/butd_att/
 input_rela_dir: /data/EECS-YuanLab/COCO/coco_img_sg/
 cached_tokens: /data/EECS-YuanLab/COCO/coco-train-idxs
+
+# Job Settings
+caption_model: tsgm3
+id: debugging-training
+gpu: 0
+
+beam_size: 5
+train_beam_size: 5
+
+noamopt: true
+noamopt_warmup: 20000
+label_smoothing: 0.0
+
 seq_per_img: 5
-batch_size: 64
+batch_size: 14
 learning_rate: 0.0005
 reduce_on_plateau: false
 
@@ -37,14 +42,12 @@ language_eval: 1
 val_images_use: 5000
 train_sample_n: 5
 
-
 self_critical_after: -1
-structure_after: 15
+structure_after: 30
 noamopt_rl: false
 learning_rate_rl: 0.00005
 learning_rate_decay_start_rl: -1
 reduce_on_plateau_rl: true
-
 train_sample_n_rl: 5
 structure_loss_weight: 1
 structure_loss_type: new_self_critical
